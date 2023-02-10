@@ -32,3 +32,19 @@ stages:
     - path: data/processed/train_insurance_course5i.csv
       md5: d8e7ce2ced447c75307952b14cd53239
       size: 30451
+  train_and_evaluate:
+    cmd: python src/train_and_evaluate.py --config=params.yaml
+    deps:
+    - path: data/processed/test_insurance_course5i.csv
+      md5: 88da20847c2d57674733e3b68f426b31
+      size: 7629
+    - path: data/processed/train_insurance_course5i.csv
+      md5: d8e7ce2ced447c75307952b14cd53239
+      size: 30451
+    - path: src/train_and_evaluate.py
+      md5: bd84614cd23554d5f19d436ef799e7ea
+      size: 2578
+    params:
+      params.yaml:
+        estimators.ElasticNet.params.alpha: 0.1
+        estimators.ElasticNet.params.l1_ratio: 0.5
